@@ -1,0 +1,51 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Main Tab -->
+    <style name="bottom_tab_item_style">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/main_tab_bg_color_press</item>
+    </style>
+
+    <style name="bottom_tab_item_center_style">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1.05</item>
+        <item name="android:background">@color/main_tab_bg_color_press</item>
+    </style>
+
+    <style name="bottom_tab_item_child_style">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="bottom_tab_img_style">
+        <item name="android:layout_width">31dp</item>
+        <item name="android:layout_height">31dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:duplicateParentState">true</item>
+    </style>
+
+    <style name="bottom_tab_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/main_tab_item_text_color_selector</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
+
+</resources>
