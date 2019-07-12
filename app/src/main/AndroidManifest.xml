@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zxc.zhanglj.zhangljfirst">
-
+    package="com.zxc.zhanglj.zhangljtwo">
     <application
-        android:name=".commons.appliaction.BaseAppliaction"
+        android:name=".application.ZljApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.zxc.zhanglj.zhangljtwo.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

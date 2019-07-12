@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.zxc.zhanglj.common.widget.MainTabItemView
+        android:id="@+id/bottom_tab_find"
+        style="@style/bottom_tab_item_style">
+        <RelativeLayout
+            android:id="@+id/bottom_tab_child_find"
+            style="@style/bottom_tab_item_child_style">
+            <ImageView
+                android:id="@+id/tab_find_img"
+                style="@style/bottom_tab_img_style"
+                android:src="@drawable/bottom_tab_item_find_selector"/>
+            <TextView
+                android:id="@+id/tab_find_tv"
+                style="@style/bottom_tab_text_style"
+                android:layout_below="@id/tab_find_img"
+                android:text="好友"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/bottom_tab_msg_indicator"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:src="@mipmap/ic_msg_circle_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="@dimen/main_tab_red_right_margin"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/bottom_tab_msg_unread_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/ic_unread_bg_circle"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="2"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
+    </com.zxc.zhanglj.common.widget.MainTabItemView>
+
+
+    <com.zxc.zhanglj.common.widget.MainTabItemView
+        android:id="@+id/bottom_tab_home"
+        style="@style/bottom_tab_item_style">
+        <RelativeLayout
+            android:id="@+id/bottom_tab_child_home"
+            style="@style/bottom_tab_item_child_style">
+            <ImageView
+                android:id="@+id/tab_home_img"
+                style="@style/bottom_tab_img_style"
+                android:src="@drawable/bottom_tab_item_interaction_selector"/>
+            <TextView
+                android:id="@+id/tab_home_tv"
+                style="@style/bottom_tab_text_style"
+                android:layout_below="@id/tab_home_img"
+                android:text="互动时间"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/bottom_tab_contact_indicator"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:src="@mipmap/ic_msg_circle_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="@dimen/main_tab_red_right_margin"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/bottom_tab_contact_unread_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/ic_unread_bg_circle"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="2"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
+
+    </com.zxc.zhanglj.common.widget.MainTabItemView>
+
+    <com.zxc.zhanglj.common.widget.MainTabItemView
+        android:id="@+id/bottom_tab_play"
+        style="@style/bottom_tab_item_style">
+        <RelativeLayout
+            android:id="@+id/bottom_tab_child_play"
+            style="@style/bottom_tab_item_child_style">
+
+            <ImageView
+                android:id="@+id/tab_play_img"
+                style="@style/bottom_tab_img_style"
+                android:src="@drawable/bottom_tab_item_yao_selector"/>
+            <TextView
+                android:id="@+id/tab_play_tv"
+                style="@style/bottom_tab_text_style"
+                android:layout_below="@id/tab_play_img"
+                android:text="电视红包"/>
+
+        </RelativeLayout>
+
+    </com.zxc.zhanglj.common.widget.MainTabItemView>
+    
+    <com.zxc.zhanglj.common.widget.MainTabItemView
+        android:id="@+id/bottom_tab_hot"
+        style="@style/bottom_tab_item_style">
+
+        <RelativeLayout
+            android:id="@+id/bottom_tab_child_hot"
+            style="@style/bottom_tab_item_child_style">
+            <ImageView
+                android:id="@+id/tab_hot_img"
+                style="@style/bottom_tab_img_style"
+                android:src="@drawable/bottom_tab_item_hot_selector"/>
+            <TextView
+                android:id="@+id/tab_hot_tv"
+                style="@style/bottom_tab_text_style"
+                android:layout_below="@id/tab_hot_img"
+                android:text="黄金家园"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/bottom_tab_hot_indicator"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:src="@mipmap/ic_msg_circle_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="@dimen/main_tab_red_right_margin"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/bottom_tab_hot_unread_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/ic_unread_bg_circle"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text=""
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
+
+    </com.zxc.zhanglj.common.widget.MainTabItemView>
+
+    <com.zxc.zhanglj.common.widget.MainTabItemView
+        android:id="@+id/bottom_tab_user"
+        style="@style/bottom_tab_item_style">
+        <RelativeLayout
+            android:id="@+id/bottom_tab_child_user"
+            style="@style/bottom_tab_item_child_style">
+            <ImageView
+                android:id="@+id/tab_user_img"
+                style="@style/bottom_tab_img_style"
+                android:src="@drawable/bottom_tab_item_user_selector"/>
+            <TextView
+                android:id="@+id/tab_user_tv"
+                style="@style/bottom_tab_text_style"
+                android:layout_below="@id/tab_user_img"
+                android:text="我的"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/bottom_tab_user_indicator"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:src="@mipmap/ic_msg_circle_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="@dimen/main_tab_red_right_margin"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/bottom_tab_user_unread_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/ic_unread_bg_circle"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="2"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
+
+    </com.zxc.zhanglj.common.widget.MainTabItemView>
+
+</merge>

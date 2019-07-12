@@ -1,1 +1,1 @@
-include ':app', ':commone_lib'
+include ':app', ':common_lib', ':main_lib'

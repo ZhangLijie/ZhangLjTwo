@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zxc.zhanglj.commone_lib" >
+
+    <application>
+        <activity android:name="com.zxc.zhanglj.common.base.baseui.BaseActivity" />
+    </application>
+</manifest>

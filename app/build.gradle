@@ -1,5 +1,30 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'auto-register'
+autoregister {
+    registerInfo = [
+            [
+                    'scanInterface'           : 'com.alibaba.android.arouter.facade.template.IRouteRoot'
+                    , 'codeInsertToClassName' : 'com.alibaba.android.arouter.core.LogisticsCenter'
+                    , 'codeInsertToMethodName': 'loadRouterMap'//static方法
+                    , 'registerMethodName'    : 'registerRouteRoot' //static方法
+                    , 'include'               : ['com/alibaba/android/arouter/routes/.*']
+            ],
+            [
+                    'scanInterface'           : 'com.alibaba.android.arouter.facade.template.IInterceptorGroup'
+                    , 'codeInsertToClassName' : 'com.alibaba.android.arouter.core.LogisticsCenter'
+                    , 'codeInsertToMethodName': 'loadRouterMap'//static方法
+                    , 'registerMethodName'    : 'registerInterceptor' //static方法
+                    , 'include'               : ['com/alibaba/android/arouter/routes/.*']
+            ],
+            [
+                    'scanInterface'           : 'com.alibaba.android.arouter.facade.template.IProviderGroup'
+                    , 'codeInsertToClassName' : 'com.alibaba.android.arouter.core.LogisticsCenter'
+                    , 'codeInsertToMethodName': 'loadRouterMap'//static方法
+                    , 'registerMethodName'    : 'registerProvider' //static方法
+                    , 'include'               : ['com/alibaba/android/arouter/routes/.*']
+            ]
+    ]
+}
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -9,6 +34,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -20,14 +50,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-
-    // appcompat-v7包是必须的
-    api 'me.yokeyword:fragmentation:1.3.6'
-    api 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    // 应用基础模块（无特殊要求，每个业务模块都应导入该依赖）
+    implementation project(':common_lib')
+    implementation project(':main_lib')
 }
