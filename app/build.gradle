@@ -39,14 +39,77 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        signingConfigs {
+            debug {
+                keyAlias 'appjie'
+                keyPassword '123456'
+                storeFile file('../app.jks')
+                storePassword '123456'
+                v2SigningEnabled false
+            }
+            release {
+                keyAlias 'appjie'
+                keyPassword '123456'
+                storeFile file('../app.jks')
+                storePassword '123456'
+                v2SigningEnabled false
+            }
         }
     }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+//            applicationVariants.all { variant ->
+//                variant.outputs.each { output ->
+//                    def outputFile = output.outputFile
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                        // 输出apk名称为App_v1.0_2016-11-29_protal.apk
+//                        output.outputFileName = "APP_${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
+////                        output.outputFileName = new File(outputFile.parent, fileName)
+//                     }
+//                }
+//            }
+
+            // release环境的正式包
+            manifestPlaceholders = [
+                    app_env_dev  : false,
+                    app_env_debug: false
+            ]
+
+            // release环境的QA包
+//            manifestPlaceholders = [
+//                    app_env_dev  : true,
+//                    app_env_debug: false
+//            ]
+        }
+        debug {
+            signingConfig signingConfigs.release
+            // debug环境的正式包
+            manifestPlaceholders = [
+                    app_env_dev  : true,
+                    app_env_debug: true
+            ]
+
+            // debug环境的QA包
+//            manifestPlaceholders = [
+//                    app_env_dev  : true,
+//                    app_env_debug: true
+//            ]
+        }
+    }
+
+
 }
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

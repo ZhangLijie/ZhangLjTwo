@@ -2,6 +2,7 @@ package com.zxc.zhanglj.zhangljtwo.application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.zxc.zhanglj.common.base.application.BaseAppliaction;
+import com.zxc.zhanglj.common.config.ConfigUtils;
 
 /**
  * Author:ZLJ
@@ -18,5 +19,7 @@ public class ZljApplication extends BaseAppliaction {
             ARouter.openLog();
         }
         ARouter.init(this);
+
+        ConfigUtils.initMainThread(this);
     }
 }

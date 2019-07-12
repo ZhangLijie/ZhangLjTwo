@@ -19,6 +19,17 @@ public class AppConstants  {
      */
     private static boolean APP_DEV = false;
 
+
+    /**
+     * APP环境配置
+     */
+    public static final String APP_ENV_DEBUG = "APP_ENV_DEBUG";
+
+    /**
+     * App环境配置
+     */
+    public static final String APP_ENV_DEV = "APP_ENV_DEV";
+
     public static boolean isAppDebug() {
         return APP_DEBUG;
     }

@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,14 +14,21 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zxc.zhanglj.common.base.baseui.BaseActivity;
 import com.zxc.zhanglj.common.base.baseui.BasePresenter;
+import com.zxc.zhanglj.common.config.AppConstants;
+import com.zxc.zhanglj.common.config.ConfigUtils;
 import com.zxc.zhanglj.common.manager.EventBusManager;
+import com.zxc.zhanglj.common.manager.asynctask.YaoTaskExecutor;
+import com.zxc.zhanglj.common.manager.asynctask.YaoTaskManager;
 import com.zxc.zhanglj.common.manager.event.SwitchTabEvent;
 import com.zxc.zhanglj.common.manager.event.TabSwitchFriendEvent;
 import com.zxc.zhanglj.common.widget.MainTabView;
+import com.zxc.zhanglj.common.widget.notification.NAManager;
 import com.zxc.zhanglj.main_lib.R;
 import com.zxc.zhanglj.main_lib.fragment.tabfragment.FriendsFragment;
 import com.zxc.zhanglj.main_lib.fragment.tabfragment.MainFragment;
+import com.zxc.zhanglj.utils.DeviceUtils;
 import com.zxc.zhanglj.utils.LogUtil;
+import com.zxc.zhanglj.utils.WeakHandler;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -29,10 +37,14 @@ import java.util.HashMap;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 @Route(path = "/zhangmain/MainActivity")
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements WeakHandler.IHandler{
 
     private String TAG = "MainActivity";
     private int mTabIndex = MainTabView.TAB_SEND;
+    private static final int HANDLER_MESSAGE_WINDOW_NAMANAGER = 623;
+
+    private boolean isInitWhenOnWindowFocus = false;
+    private WeakHandler mHandler = new WeakHandler(this);
 
     private FragmentManager.FragmentLifecycleCallbacks fragmentLifecycleCallbacks = new FragmentManager.FragmentLifecycleCallbacks() {
         @Override
@@ -147,6 +159,16 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        LogUtil.d(TAG, "onWindowFocusChanged");
+        if (hasFocus) {
+//            mHandler.sendEmptyMessage(HANDLER_MESSAGE_WINDOW_FOCUS);
+            mHandler.sendEmptyMessageDelayed(HANDLER_MESSAGE_WINDOW_NAMANAGER,2000);
+        }
+    }
+
+    @Override
     protected BasePresenter initPresenter() {
         return null;
     }
@@ -154,5 +176,40 @@ public class MainActivity extends BaseActivity {
     @Override
     protected Object getPresenterView() {
         return null;
+    }
+
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what) {
+            case HANDLER_MESSAGE_WINDOW_NAMANAGER:
+
+                NAManager.getInstance().begin(getApplicationContext());
+
+                if(isInitWhenOnWindowFocus){
+                    return;
+                }
+
+                isInitWhenOnWindowFocus = true;
+
+                YaoTaskManager.getInstance().addTaskPool(new YaoTaskExecutor<Void>() {
+                    @Override
+                    public Void exec() throws Exception {
+
+                        // 设备是否太low
+
+                        return null;
+                    }
+
+                    public void onMainSuccess(Void result){
+
+                        // 初始化本地crash日志管理
+
+                        ConfigUtils.initCrashReportManager(getApplicationContext());
+
+
+                    }
+                });
+                break;
+        }
     }
 }

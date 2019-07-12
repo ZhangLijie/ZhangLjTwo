@@ -1,8 +1,15 @@
 package com.zxc.zhanglj.common.config;
 
 import android.app.Application;
+import android.content.Context;
 
 
+import com.zxc.zhanglj.common.base.application.BaseAppliaction;
+import com.zxc.zhanglj.common.core.crash.reportlog.ReportManager;
+import com.zxc.zhanglj.common.core.crash.reportlog.collector.ReportData;
+import com.zxc.zhanglj.common.core.crash.reportlog.sender.ReportSender;
+import com.zxc.zhanglj.utils.AppUtils;
+import com.zxc.zhanglj.utils.GlobalInit;
 import com.zxc.zhanglj.utils.LogUtil;
 
 import me.yokeyword.fragmentation.Fragmentation;
@@ -13,7 +20,14 @@ import me.yokeyword.fragmentation.helper.ExceptionHandler;
  * Date: 2019/1/25 11:23
  */
 public class ConfigUtils {
-    public static void initMainThread(final Application application) {
+    private static final String TAG = "ConfigUtil";
+
+    private static boolean isInitCrashReportManager = false;
+
+
+    public static void initMainThread(Application application) {
+
+        initCommonConfig(application);
         initFragmentManager();
     }
 
@@ -37,5 +51,50 @@ public class ConfigUtils {
                     }
                 })
                 .install();
+    }
+
+    /**
+     * 初始化App配置
+     */
+    public static void initCommonConfig(Context context) {
+
+        // 获取版本号
+        GlobalInit.VERSION_NAME = AppUtils.getVersionName(context);
+        GlobalInit.PACKAGE_NAME = AppUtils.getPackageName(context);
+        //获取配置的debug和dev值
+        boolean appDev = (boolean) AppUtils.getMetaData(context, AppConstants.APP_ENV_DEV);
+        boolean appDebug = (boolean) AppUtils.getMetaData(context, AppConstants.APP_ENV_DEBUG);
+
+        //App的环境变量
+        AppConstants.setAppDev(appDev);
+        AppConstants.setAppDebug(appDebug);
+        LogUtil.isDebug = AppConstants.isAppDebug();
+        LogUtil.d(TAG, "appDev : " + appDev);
+
+        LogUtil.d(TAG, "appDebug : " + appDebug);
+
+        //BaseModule的环境变量
+        GlobalInit.APP_DEBUG = AppConstants.isAppDebug();
+
+    }
+
+
+
+    /**
+     * 本地日志收集
+     */
+    public static void initCrashReportManager(Context context) {
+        if (isInitCrashReportManager) {
+            return;
+        }
+
+        isInitCrashReportManager = true;
+
+        ReportManager.getInstance().init(context, new ReportSender() {
+
+            @Override
+            public void send(ReportData errorContent) {
+            }
+        });
     }
 }

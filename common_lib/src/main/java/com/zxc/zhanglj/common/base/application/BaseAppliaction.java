@@ -22,7 +22,6 @@ public class BaseAppliaction extends Application {
         super.onCreate();
         synchronized (this) {
             LogUtil.i(TAG, "onCreate");
-            ConfigUtils.initMainThread(this);
             mApplication = this;
             mContext = this.getApplicationContext();
         }
