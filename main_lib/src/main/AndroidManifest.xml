@@ -13,5 +13,7 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"></activity>
+
+        <activity android:name=".fragment.tabfragment.SlidingSimpleActivity" />
     </application>
 </manifest>

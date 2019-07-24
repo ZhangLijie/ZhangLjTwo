@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        app:elevation="0dp">
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/id_collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap">
+
+            <!--顶部可折叠布局-->
+            <LinearLayout
+                android:id="@+id/id_ll_home_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_header_top"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|enterAlways">
+                <!--顶部小脉布局-->
+                <RelativeLayout
+                    android:id="@+id/id_main_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/DIMEN_16DP"
+                    android:layout_marginTop="@dimen/DIMEN_35DP"
+                    android:layout_marginRight="@dimen/DIMEN_16DP"
+                    android:background="@color/cardview_dark_background"
+                    android:gravity="center_vertical">
+
+
+                    <TextView
+                        android:id="@+id/id_tv_intro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/DIMEN_25DP"
+                        android:layout_marginLeft="@dimen/DIMEN_10DP"
+                        android:gravity="center_vertical"
+                        android:text="/xm_intro"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/DIMEN_14DP" />
+
+                </RelativeLayout>
+                <!--新人搜索引导步骤-->
+                <ImageView
+                    android:id="@+id/id_img_tb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="@dimen/DIMEN_10DP"
+                    android:layout_marginRight="16dp"
+                    android:scaleType="fitXY"
+                    android:visibility="gone" />
+                <!--搜索框布局-->
+                <LinearLayout
+                    android:id="@+id/id_ll_root_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_15DP"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/id_rl_home_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/DIMEN_40DP"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/DIMEN_20DP"
+                        android:layout_marginRight="@dimen/DIMEN_20DP">
+
+                        <ImageView
+                            android:id="@+id/id_iv_search_icon"
+                            android:layout_width="@dimen/DIMEN_18DP"
+                            android:layout_height="@dimen/DIMEN_18DP"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/DIMEN_13DP"
+                            android:background="@mipmap/ic_menu_me_normal" />
+
+                        <TextView
+                            android:id="@+id/id_tv_search_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/DIMEN_15DP"
+                            android:text="textexte"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--分类Tab布局-->
+            <LinearLayout
+                android:id="@+id/id_home_tab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_50DP"
+                android:background="@mipmap/bg_header_bottom"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分类1" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分类2" />
+            </LinearLayout>
+            <!--tab更多-->
+
+
+            <RelativeLayout
+                android:id="@+id/is_rl_more"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </RelativeLayout>
+        </FrameLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/n_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="哈"
+                android:textColor="#0f0"
+                android:textSize="200sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="哈"
+                android:textColor="#0f0"
+                android:textSize="200sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="哈"
+                android:textColor="#0f0"
+                android:textSize="200sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="哈"
+                android:textColor="#0f0"
+                android:textSize="200sp" />
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
