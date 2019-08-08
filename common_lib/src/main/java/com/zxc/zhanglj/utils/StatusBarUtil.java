@@ -74,6 +74,39 @@ public class StatusBarUtil {
     }
 
     /**
+     * 设置状态栏渐变颜色
+     *
+     * @param activity 目标activity
+     * @param view     目标View
+     */
+    public static void setGradientColor(@NonNull Activity activity, View view) {
+        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+        View fakeStatusBarView = decorView.findViewById(android.R.id.custom);
+        if (fakeStatusBarView != null) {
+            decorView.removeView(fakeStatusBarView);
+        }
+        setRootView(activity, false);
+        setTransparentForWindow(activity);
+        setPaddingTop(activity, view);
+    }
+
+    /**
+     * 增加View的paddingTop,增加的值为状态栏高度 (智能判断，并设置高度)
+     *
+     * @param context 目标Context
+     * @param view    需要增高的View
+     */
+    public static void setPaddingTop(Context context, @NonNull View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            ViewGroup.LayoutParams lp = view.getLayoutParams();
+            if (lp != null && lp.height > 0 && view.getPaddingTop() == 0) {
+                lp.height += getStatusBarHeight(context);
+                view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + getStatusBarHeight(context),
+                        view.getPaddingRight(), view.getPaddingBottom());
+            }
+        }
+    }
+    /**
      * 为滑动返回界面设置状态栏颜色
      *
      * @param activity 需要设置的activity
@@ -646,6 +679,24 @@ public class StatusBarUtil {
             if (childView instanceof ViewGroup) {
                 childView.setFitsSystemWindows(true);
                 ((ViewGroup) childView).setClipToPadding(true);
+            }
+        }
+    }
+
+
+    /**
+     * 设置根布局参数
+     *
+     * @param activity         目标activity
+     * @param fitSystemWindows 是否预留toolbar的高度
+     */
+    private static void setRootView(Activity activity, boolean fitSystemWindows) {
+        ViewGroup parent = activity.findViewById(android.R.id.content);
+        for (int i = 0, count = parent.getChildCount(); i < count; i++) {
+            View childView = parent.getChildAt(i);
+            if (childView instanceof ViewGroup) {
+                childView.setFitsSystemWindows(fitSystemWindows);
+                ((ViewGroup) childView).setClipToPadding(fitSystemWindows);
             }
         }
     }
