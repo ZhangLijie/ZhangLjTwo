@@ -2,11 +2,15 @@ package com.zxc.zhanglj.main_lib.fragment.tabfragment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zxc.zhanglj.common.base.baseui.BaseFragment;
 import com.zxc.zhanglj.common.base.baseui.BasePresenter;
 import com.zxc.zhanglj.main_lib.R;
+import com.zxc.zhanglj.main_lib.fragment.activity.ImageActivity;
+import com.zxc.zhanglj.main_lib.fragment.activity.SlidingSimpleActivity;
 
 
 /**
@@ -32,6 +36,19 @@ public class CostFragment extends BaseFragment {
     protected void initView(Bundle savedInstanceState) {
         TextView textView = mBaseRootView.findViewById(R.id.text_view);
         textView.setText(TAG);
+
+
+
+        ImageView up_img_iv = mBaseRootView.findViewById(R.id.up_img_iv);
+        Button buton_id = mBaseRootView.findViewById(R.id.buton_id);
+
+        up_img_iv.setBackgroundDrawable(getResources().getDrawable(R.mipmap.bg_girl));
+        buton_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SlidingSimpleActivity.launchActivity(getActivity());
+            }
+        });
 
     }
 

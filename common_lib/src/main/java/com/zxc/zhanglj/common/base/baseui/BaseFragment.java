@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import com.zxc.zhanglj.common.filter.ClickEventFilter;
 import com.zxc.zhanglj.commone_lib.R;
 import com.zxc.zhanglj.utils.LogUtil;
+import com.zxc.zhanglj.utils.StatusBarUtil;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -37,7 +38,7 @@ private String TAG ="BaseFragment";
     public final View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                    @Nullable Bundle savedInstanceState) {
         mBaseRootView = (FrameLayout) inflater.inflate(R.layout.fragment_base, container, false);
-
+        setStatusBar();
 
         mBaseRootView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +95,10 @@ private String TAG ="BaseFragment";
             e.printStackTrace();
             LogUtil.i(TAG,"addChildView e:"+e.toString());
         }
+    }
+
+    protected void setStatusBar() {
+        StatusBarUtil.setTranslucentForImageViewInFragment(this.getActivity(), null);
     }
 
     /**

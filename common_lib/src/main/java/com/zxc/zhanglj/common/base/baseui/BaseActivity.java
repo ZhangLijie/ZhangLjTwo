@@ -13,6 +13,7 @@ import com.zxc.zhanglj.common.filter.ClickEventFilter;
 import com.zxc.zhanglj.common.stack.ActivityManager;
 import com.zxc.zhanglj.commone_lib.R;
 import com.zxc.zhanglj.utils.LogUtil;
+import com.zxc.zhanglj.utils.StatusBarUtil;
 import com.zxc.zhanglj.utils.WeakHandler;
 
 import me.yokeyword.fragmentation.SupportActivity;
@@ -81,6 +82,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Suppor
         }
 
         setContentView(R.layout.base);
+        setStatusBar();
 
         isDestroyed = false;
 
@@ -117,6 +119,10 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Suppor
     private void initBaseView() {
         layoutBaseRoot = (RelativeLayout) findViewById(R.id.layout_base_root);
         LayoutInflater.from(this).inflate(setLayoutId(), layoutBaseRoot);
+    }
+
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(this, 0xff000000);
     }
 
 

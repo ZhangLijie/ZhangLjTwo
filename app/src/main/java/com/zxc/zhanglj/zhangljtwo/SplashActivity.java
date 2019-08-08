@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.Postcard;
@@ -15,6 +16,7 @@ import com.zxc.zhanglj.common.base.baseui.BaseActivity;
 import com.zxc.zhanglj.common.base.baseui.BasePresenter;
 import com.zxc.zhanglj.common.manager.permission.Permission;
 import com.zxc.zhanglj.utils.LogUtil;
+import com.zxc.zhanglj.utils.StatusBarUtil;
 import com.zxc.zhanglj.utils.ToastUtils;
 import com.zxc.zhanglj.utils.WeakHandler;
 
@@ -24,6 +26,7 @@ import com.zxc.zhanglj.utils.WeakHandler;
  */
 public class SplashActivity extends BaseActivity implements WeakHandler.IHandler {
     private String TAG = "SplashActivity";
+    private LinearLayout splish_ll;
     private static final int REQUEST_PERMISSION_STORAGE = 10010;
     private static final int REQUEST_PERMISSION_PHONE = 10011;
     private WeakHandler mHandler = new WeakHandler(this);
@@ -36,6 +39,11 @@ public class SplashActivity extends BaseActivity implements WeakHandler.IHandler
     @Override
     protected int setLayoutId() {
         return R.layout.activity_splash_layout;
+    }
+
+    @Override
+    protected void initViews() {
+        splish_ll = findViewById(R.id.splish_ll);
     }
 
     @Override
@@ -128,5 +136,10 @@ public class SplashActivity extends BaseActivity implements WeakHandler.IHandler
     @Override
     public void handleMessage(Message msg) {
 
+    }
+
+    @Override
+    protected void setStatusBar() {
+        StatusBarUtil.setTransparentForImageView(this, splish_ll);
     }
 }

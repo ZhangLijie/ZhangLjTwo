@@ -1,5 +1,7 @@
-package com.zxc.zhanglj.main_lib.fragment.tabfragment;
+package com.zxc.zhanglj.main_lib.fragment.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.view.View;
@@ -11,6 +13,7 @@ import com.zxc.zhanglj.common.base.baseui.BasePresenter;
 import com.zxc.zhanglj.main_lib.R;
 import com.zxc.zhanglj.utils.LogUtil;
 import com.zxc.zhanglj.utils.ScreenUtil;
+import com.zxc.zhanglj.utils.StatusBarUtil;
 
 /**
  * Author:ZLJ
@@ -26,6 +29,13 @@ public class SlidingSimpleActivity extends BaseActivity implements AppBarLayout.
     private ImageView mIvIntro;//头部引导图
     private RelativeLayout mRlSearch;//搜索框
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
+
+    public static void launchActivity(Activity activity) {
+        Intent intent = new Intent();
+        intent.setClass(activity, SlidingSimpleActivity.class);
+        activity.startActivity(intent);
+
+    }
 
     @Override
     public void onTvmClick(View v) {
@@ -77,5 +87,14 @@ public class SlidingSimpleActivity extends BaseActivity implements AppBarLayout.
             mIvIntro.setAlpha(1 - Math.abs(mAppLayoutAlpha));
         }
 
+
+        //StatusBarUtil.setTransparentForImageView(this, mAppBar);
+
+    }
+
+    @Override
+    protected void setStatusBar() {
+
+        StatusBarUtil.setTransparentForImageView(this, mAppBar);
     }
 }
